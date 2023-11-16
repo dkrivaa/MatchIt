@@ -8,6 +8,7 @@ import engine
 def main():
     engine.step1()
 
+    engine.step2()
 
 
 
