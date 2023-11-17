@@ -129,209 +129,214 @@ def step2():
 
         st.write('##### Your file was uploaded successfully')
 
-        st.markdown('___')
+        st.header('', divider='orange')
 
         # ______________________________________________________________________
         # Step 3
         st.write('### Step 3 - Press to MatchIT')
 
-        # Making data ready for MATCHING process
-        #df1.replace(999, np.nan, inplace=True)
-        position_list = df1.iloc[:, 0].tolist()
-        position_pref_list = list(zip(*df1.iloc[:, 1:].values.T))
-        position_dict = dict(zip(position_list, position_pref_list))
+        matchIt = st.button('Press to Continue', type='primary')
 
-        #df2.replace(999, np.nan, inplace=True)
-        employee_list = df2.iloc[:, 0].tolist()
-        employee_pref_list = list(zip(*df2.iloc[:, 1:].values.T))
-        employee_dict = dict(zip(employee_list, employee_pref_list))
+        if matchIt:
+            st.markdown('___')
 
-        # Getting the number of max preferences for upperhand (positions) and lowerhand (employees)
-        num_of_prefs_upperhand = len(max(position_pref_list, key=len))
-        num_of_prefs_lowerhand = len(max(employee_pref_list, key=len))
+            # Making data ready for MATCHING process
+            #df1.replace(999, np.nan, inplace=True)
+            position_list = df1.iloc[:, 0].tolist()
+            position_pref_list = list(zip(*df1.iloc[:, 1:].values.T))
+            position_dict = dict(zip(position_list, position_pref_list))
 
-        if num_of_prefs_upperhand not in st.session_state:
-            st.session_state.num_of_prefs_upperhand = num_of_prefs_upperhand
+            #df2.replace(999, np.nan, inplace=True)
+            employee_list = df2.iloc[:, 0].tolist()
+            employee_pref_list = list(zip(*df2.iloc[:, 1:].values.T))
+            employee_dict = dict(zip(employee_list, employee_pref_list))
 
-        if num_of_prefs_lowerhand not in st.session_state:
-            st.session_state.num_of_prefs_lowerhand = num_of_prefs_lowerhand
+            # Getting the number of max preferences for upperhand (positions) and lowerhand (employees)
+            num_of_prefs_upperhand = len(max(position_pref_list, key=len))
+            num_of_prefs_lowerhand = len(max(employee_pref_list, key=len))
 
-        # Calculating how many employees have matching preferences with positions
-        possible = 0
-        for employee in employee_list:
-            for position in employee_dict[employee]:
-                try:
-                    if employee in position_dict[position]:
-                        possible += 1
-                        break
-                except KeyError:
-                    pass
+            if num_of_prefs_upperhand not in st.session_state:
+                st.session_state.num_of_prefs_upperhand = num_of_prefs_upperhand
 
+            if num_of_prefs_lowerhand not in st.session_state:
+                st.session_state.num_of_prefs_lowerhand = num_of_prefs_lowerhand
 
-        # The stable matching algorithm
-
-        upperhand = 'position'
-        lowerhand = 'candidate'
-
-        tentative_appoint = []
-        free_positions = []
-        free_employees = []
-
-        special_list = []
-
-        def init_free_positions():
-            for position in position_dict.keys():
-                free_positions.append(position)
-
-        def init_free_employees():
-            for employee in employee_dict.keys():
-                free_employees.append(employee)
-
-        def stable_matching():
-            if len(free_positions) > len(free_employees):
-                st.write('Not enough employees to fill all positions!')
-                quit()
-
-            while len(free_positions) > 0:
-                for position in free_positions:
-                    special_list.append(position)
-                    if special_list.count(position) < 5:
-                        begin_matching(position)
-                    elif 5 <= special_list.count(position) < 10:
-                        special_matching(position)
-                    else:
-                        st.write('Quitting due to inability to find solution for all positions')
-                        quit()
-
-        def begin_matching(position):
-
-            # Function for calculating combined preferences
-            def points(position, employee):
-                num_of_prefs_upperhand = st.session_state.num_of_prefs_upperhand
-                num_of_prefs_lowerhand = st.session_state.num_of_prefs_lowerhand
-
-                if position == 999:
-                    position_points = 0
-                elif employee not in position_dict[position]:
-                    position_points = 0
-                else:
-                    position_points = 10 + num_of_prefs_upperhand - position_dict[position].index(employee)
-
-                if employee == 999:
-                    employee_points = 0
-                elif position not in employee_dict[employee]:
-                    employee_points = 0
-                else:
-                    employee_points = 5.1 + num_of_prefs_lowerhand - employee_dict[employee].index(position)
-                points = position_points + employee_points
-
-                return points
-
-            # Sorting position pref list by combined points of prefs
-            best_list = []
-            for employee in position_dict[position]:
-                point = points(position, employee)
-                best_list.append((employee, point))
-            best_list = sorted(best_list, key=lambda x: x[1], reverse=True)
-            temp_list = [x[0] for x in best_list]
-            position_dict[position] = temp_list
-
-            # Going through employees to find best match
-            for employee in position_dict[position]:
-
-                if employee == 'employee0':
-                    break
-
-                taken_match = [couple for couple in tentative_appoint if employee in couple]
-
-                if len(taken_match) == 0:
-                    tentative_appoint.append([position, employee])
-                    free_positions.remove(position)
-                    free_employees.remove(employee)
-                    break
-
-                elif len(taken_match) > 0:
-                    current_position_points = points(taken_match[0][0], employee)
-                    potential_position_points = points(position, employee)
-
-                    if current_position_points >= potential_position_points:
+            # Calculating how many employees have matching preferences with positions
+            possible = 0
+            for employee in employee_list:
+                for position in employee_dict[employee]:
+                    try:
+                        if employee in position_dict[position]:
+                            possible += 1
+                            break
+                    except KeyError:
                         pass
 
+
+            # The stable matching algorithm
+
+            upperhand = 'position'
+            lowerhand = 'candidate'
+
+            tentative_appoint = []
+            free_positions = []
+            free_employees = []
+
+            special_list = []
+
+            def init_free_positions():
+                for position in position_dict.keys():
+                    free_positions.append(position)
+
+            def init_free_employees():
+                for employee in employee_dict.keys():
+                    free_employees.append(employee)
+
+            def stable_matching():
+                if len(free_positions) > len(free_employees):
+                    st.write('Not enough employees to fill all positions!')
+                    quit()
+
+                while len(free_positions) > 0:
+                    for position in free_positions:
+                        special_list.append(position)
+                        if special_list.count(position) < 5:
+                            begin_matching(position)
+                        elif 5 <= special_list.count(position) < 10:
+                            special_matching(position)
+                        else:
+                            st.write('Quitting due to inability to find solution for all positions')
+                            quit()
+
+            def begin_matching(position):
+
+                # Function for calculating combined preferences
+                def points(position, employee):
+                    num_of_prefs_upperhand = st.session_state.num_of_prefs_upperhand
+                    num_of_prefs_lowerhand = st.session_state.num_of_prefs_lowerhand
+
+                    if position == 999:
+                        position_points = 0
+                    elif employee not in position_dict[position]:
+                        position_points = 0
                     else:
-                        free_positions.remove(position)
-                        free_positions.append(taken_match[0][0])
-                        taken_match[0][0] = position
+                        position_points = 10 + num_of_prefs_upperhand - position_dict[position].index(employee)
+
+                    if employee == 999:
+                        employee_points = 0
+                    elif position not in employee_dict[employee]:
+                        employee_points = 0
+                    else:
+                        employee_points = 5.1 + num_of_prefs_lowerhand - employee_dict[employee].index(position)
+                    points = position_points + employee_points
+
+                    return points
+
+                # Sorting position pref list by combined points of prefs
+                best_list = []
+                for employee in position_dict[position]:
+                    point = points(position, employee)
+                    best_list.append((employee, point))
+                best_list = sorted(best_list, key=lambda x: x[1], reverse=True)
+                temp_list = [x[0] for x in best_list]
+                position_dict[position] = temp_list
+
+                # Going through employees to find best match
+                for employee in position_dict[position]:
+
+                    if employee == 'employee0':
                         break
 
-        def special_matching(position):
+                    taken_match = [couple for couple in tentative_appoint if employee in couple]
 
-            chosen_employee = [chosen for chosen in free_employees if position in employee_dict[chosen]]
-            if len(chosen_employee) != 0:
-                tentative_appoint.append([position, chosen_employee[0]])
-                free_positions.remove(position)
-                free_employees.remove(chosen_employee[0])
-                # st.write(f'{chosen_employee} is tentatively appointed to {position}')
+                    if len(taken_match) == 0:
+                        tentative_appoint.append([position, employee])
+                        free_positions.remove(position)
+                        free_employees.remove(employee)
+                        break
 
-            else:
-                chosen_employee = random.choice(free_employees)
-                tentative_appoint.append([position, chosen_employee])
-                free_positions.remove(position)
+                    elif len(taken_match) > 0:
+                        current_position_points = points(taken_match[0][0], employee)
+                        potential_position_points = points(position, employee)
 
-        # The following statements are initializing the matching process
-        init_free_positions()
-        init_free_employees()
-        stable_matching()
+                        if current_position_points >= potential_position_points:
+                            pass
 
-        # Showing results
-        st.subheader('The optimal appointments:')
-        pos_count = 0
-        emp_count = 0
+                        else:
+                            free_positions.remove(position)
+                            free_positions.append(taken_match[0][0])
+                            taken_match[0][0] = position
+                            break
 
-        real_position_list = []
-        real_candidate_list = []
+            def special_matching(position):
 
-        for i in range(0, len(df1)):
-            real_candidate = (df2_original.iloc[:, 0][df2.iloc[:, 0] == tentative_appoint[i][1]]).iloc[0]
-            real_position = (df1_original.iloc[:, 0][df2.iloc[:, 0] == tentative_appoint[i][0]]).iloc[0]
-            real_position_list.append(real_position)
-            real_candidate_list.append(real_candidate)
-            # Writing the results to screen and adapt the text to context
-            st.write(f'Appoint **{real_candidate}** to **{real_position}**')
+                chosen_employee = [chosen for chosen in free_employees if position in employee_dict[chosen]]
+                if len(chosen_employee) != 0:
+                    tentative_appoint.append([position, chosen_employee[0]])
+                    free_positions.remove(position)
+                    free_employees.remove(chosen_employee[0])
+                    # st.write(f'{chosen_employee} is tentatively appointed to {position}')
 
-            # Calculating how many got one of top wishes
-            if tentative_appoint[i][1] in position_dict[tentative_appoint[i][0]]:
-                pos_count += 1
+                else:
+                    chosen_employee = random.choice(free_employees)
+                    tentative_appoint.append([position, chosen_employee])
+                    free_positions.remove(position)
 
-            if tentative_appoint[i][0] in employee_dict[tentative_appoint[i][1]]:
-                emp_count += 1
+            # The following statements are initializing the matching process
+            init_free_positions()
+            init_free_employees()
+            stable_matching()
 
-        # Making csv file of results to download
-        pos = [sublist[0] for sublist in tentative_appoint]
-        emp = [sublist[1] for sublist in tentative_appoint]
-        # df_results = pd.DataFrame({'position': pos, 'employee': emp})
-        # Code for the user entered positions and candidates (doesn't work with hebrew)
-        df_results = pd.DataFrame({f'{upperhand}': real_position_list,
-                                   f'{lowerhand}': real_candidate_list})
+            # Showing results
+            st.subheader('The optimal appointments:')
+            pos_count = 0
+            emp_count = 0
 
-        def convert_df(df_any):
-            return df_any.to_csv(index=False).encode('windows-1255')
+            real_position_list = []
+            real_candidate_list = []
 
-        down_result = convert_df(df_results)
+            for i in range(0, len(df1)):
+                real_candidate = (df2_original.iloc[:, 0][df2.iloc[:, 0] == tentative_appoint[i][1]]).iloc[0]
+                real_position = (df1_original.iloc[:, 0][df2.iloc[:, 0] == tentative_appoint[i][0]]).iloc[0]
+                real_position_list.append(real_position)
+                real_candidate_list.append(real_candidate)
+                # Writing the results to screen and adapt the text to context
+                st.write(f'Appoint **{real_candidate}** to **{real_position}**')
 
-        st.download_button('Download results',
-                           data=down_result,
-                           file_name='results.csv',
-                           mime='text/csv',
-                           type='primary')
+                # Calculating how many got one of top wishes
+                if tentative_appoint[i][1] in position_dict[tentative_appoint[i][0]]:
+                    pos_count += 1
 
-        # Summary data
-        st.header('', divider='orange')
+                if tentative_appoint[i][0] in employee_dict[tentative_appoint[i][1]]:
+                    emp_count += 1
 
-        st.subheader('Summary')
-        st.write(f'Number of **{upperhand}s** that got one of top wishes: **{pos_count}** '
-                 f'(out of **{len(tentative_appoint)}** open positions)')
-        st.write(f'Number of **{lowerhand}s** that got one of top wishes: **{emp_count}** '
-                 f'(out of **{possible}** that have corresponding wishes with positions)')
+            # Making csv file of results to download
+            pos = [sublist[0] for sublist in tentative_appoint]
+            emp = [sublist[1] for sublist in tentative_appoint]
+            # df_results = pd.DataFrame({'position': pos, 'employee': emp})
+            # Code for the user entered positions and candidates (doesn't work with hebrew)
+            df_results = pd.DataFrame({f'{upperhand}': real_position_list,
+                                       f'{lowerhand}': real_candidate_list})
+
+            def convert_df(df_any):
+                return df_any.to_csv(index=False).encode('windows-1255')
+
+            down_result = convert_df(df_results)
+
+            st.download_button('Download results',
+                               data=down_result,
+                               file_name='results.csv',
+                               mime='text/csv',
+                               type='primary')
+
+            # Summary data
+            st.header('', divider='orange')
+
+            st.subheader('Summary')
+            st.write(f'Number of **{upperhand}s** that got one of top wishes: **{pos_count}** '
+                     f'(out of **{len(tentative_appoint)}** open positions)')
+            st.write(f'Number of **{lowerhand}s** that got one of top wishes: **{emp_count}** '
+                     f'(out of **{possible}** that have corresponding wishes with positions)')
 
 
 # __________________________________________________________________________________
