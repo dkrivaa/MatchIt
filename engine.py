@@ -209,8 +209,7 @@ def step2():
             def points(position, employee):
                 num_of_prefs_upperhand = st.session_state.num_of_prefs_upperhand
                 num_of_prefs_lowerhand = st.session_state.num_of_prefs_lowerhand
-                st.write(f'pos: {position}')
-                st.write(employee)
+
                 if position == 999:
                     position_points = 0
                 elif employee not in position_dict[position]:
@@ -283,7 +282,56 @@ def step2():
         init_free_employees()
         stable_matching()
 
+        # Showing results
+        st.subheader('The optimal appointments:')
+        pos_count = 0
+        emp_count = 0
 
+        real_position_list = []
+        real_candidate_list = []
+
+        for i in range(0, len(df1)):
+            real_candidate = (df2_original.iloc[:, 0][df2.iloc[:, 0] == tentative_appoint[i][1]]).iloc[0]
+            real_position = (df1_original.iloc[:, 0][df2.iloc[:, 0] == tentative_appoint[i][0]]).iloc[0]
+            real_position_list.append(real_position)
+            real_candidate_list.append(real_candidate)
+            # Writing the results to screen and adapt the text to context
+            st.write(f'Appoint **{real_candidate}** to **{real_position}**')
+
+            # Calculating how many got one of top wishes
+            if tentative_appoint[i][1] in position_dict[tentative_appoint[i][0]]:
+                pos_count += 1
+
+            if tentative_appoint[i][0] in employee_dict[tentative_appoint[i][1]]:
+                emp_count += 1
+
+        # Making csv file of results to download
+        pos = [sublist[0] for sublist in tentative_appoint]
+        emp = [sublist[1] for sublist in tentative_appoint]
+        # df_results = pd.DataFrame({'position': pos, 'employee': emp})
+        # Code for the user entered positions and candidates (doesn't work with hebrew)
+        df_results = pd.DataFrame({f'{upperhand}': real_position_list,
+                                   f'{lowerhand}': real_candidate_list})
+
+        def convert_df(df_any):
+            return df_any.to_csv(index=False).encode('windows-1255')
+
+        down_result = convert_df(df_results)
+
+        st.download_button('Download results',
+                           data=down_result,
+                           file_name='results.csv',
+                           mime='text/csv',
+                           type='primary')
+
+        # Summary data
+        st.header('', divider='orange')
+
+        st.subheader('Summary')
+        st.write(f'Number of **{upperhand}s** that got one of top wishes: **{pos_count}** '
+                 f'(out of **{len(tentative_appoint)}** open positions)')
+        st.write(f'Number of **{lowerhand}s** that got one of top wishes: **{emp_count}** '
+                 f'(out of **{possible}** that have corresponding wishes with positions)')
 
 
 # __________________________________________________________________________________
