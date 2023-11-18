@@ -132,7 +132,7 @@ def step2():
         else:
             row_index = [i for i in range(0, len(test1)) if not test1[i]]
             st.error(f'Error: Identical preference entries for position: '
-                     f'{df1_original.iloc[row_index[0]][0]}. Please correct the error '
+                     f'##{df1_original.iloc[row_index[0]][0]}##. Please correct the error '
                      f'and upload file again.')
             exit()
 
