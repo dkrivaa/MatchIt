@@ -141,12 +141,10 @@ def step2():
             st.markdown('___')
 
             # Making data ready for MATCHING process
-            #df1.replace(999, np.nan, inplace=True)
             position_list = df1.iloc[:, 0].tolist()
             position_pref_list = list(zip(*df1.iloc[:, 1:].values.T))
             position_dict = dict(zip(position_list, position_pref_list))
 
-            #df2.replace(999, np.nan, inplace=True)
             employee_list = df2.iloc[:, 0].tolist()
             employee_pref_list = list(zip(*df2.iloc[:, 1:].values.T))
             employee_dict = dict(zip(employee_list, employee_pref_list))
