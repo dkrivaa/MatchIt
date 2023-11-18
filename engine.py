@@ -136,8 +136,9 @@ def step2():
 
 
         st.write(df1)
-        st.write(df1.applymap(lambda x: isinstance(x, int)).all().all())
-
+        invalid_values_condition = df1.applymap(lambda x: not (isinstance(x, int) or x == 999))
+        invalid_values = df1[invalid_values_condition]
+        st.write(invalid_values)
 
         # checking that all data is ok (first condition = only numbers, second condition = valid preferences)
         if ((df1.applymap(lambda x: isinstance(x, int)).all().all()) and
