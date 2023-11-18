@@ -54,6 +54,12 @@ def step1():
 
             # Setting height of first line
             worksheet1.set_row(0, 30)
+            worksheet2.set_row(0, 30)
+
+            # Writing explanations in first row
+            worksheet1.write('a1', 'Name/Number of position')
+            worksheet1.write('b1', 'Name/Number of candidate')
+
 
         buffer.seek(0)
 
