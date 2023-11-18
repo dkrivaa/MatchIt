@@ -136,7 +136,7 @@ def step2():
             exit()
         st.write(df1)
         # checking that all data is ok (first condition = only numbers, second condition = valid preferences)
-        if ((df1.applymap(lambda x: isinstance(x, int) or x == 999).all().all()) and
+        if ((df1.applymap(lambda x: isinstance(x, int) or (x == 999 and pd.notna(x))).all().all()) and
                 (df1.applymap(lambda y: (y < len(df2) + 1) or (y == 999)).all().all())):
             pass
         else:
