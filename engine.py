@@ -288,11 +288,9 @@ def step2():
 
                     taken_match = [couple for couple in tentative_appoint if employee in couple]
 
-                    if len(taken_match) == 0:
+                    if len(taken_match) == 0 and employee != 999:
                         tentative_appoint.append([position, employee])
                         free_positions.remove(position)
-                        st.write(free_employees)
-                        st.write(employee)
                         free_employees.remove(employee)
                         break
 
