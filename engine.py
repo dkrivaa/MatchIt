@@ -8,10 +8,8 @@ import string
 
 def step1():
     st.title('MatchIT')
-    lang = st.radio('Choose Language', ['English', 'Hebrew'])
-    # lang = st.selectbox('Choose Language', ('English', 'Hebrew'), index=0)
+    lang = st.radio('**Choose Language**', ['English', 'Hebrew'])
     st.markdown('___')
-
     # Step 1
     if lang == 'English':
         st.write('### Step 1 - Make Excel file for download')
