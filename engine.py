@@ -42,7 +42,7 @@ def step1():
             # Defining the layout of excel file
 
             # Getting the column letter of last column in excel file (two sheets)
-            u_letter = chr(ord('A') + upperhand - 1)
+            u_letter = chr(ord('A') + upperhand)
             l_letter = chr(ord('A') + lowerhand - 1)
 
             workbook = writer.book
