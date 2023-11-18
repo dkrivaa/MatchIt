@@ -78,7 +78,6 @@ def step1():
                 m = ord(y) - ord('A')
                 worksheet2.write(f'{y}1', f'Name/Number of {m} priority position', cell_format)
 
-
         buffer.seek(0)
 
         st.download_button(
