@@ -164,8 +164,9 @@ def step2():
             exit()
 
         # checking that all data is ok (first condition = only numbers, second condition = valid preferences)
-        if ((df2.applymap(lambda x: isinstance(x, int) or isinstance(x, float)).all().all()) and
-                (df2.applymap(lambda y: (y < len(df1) + 1) or (y == 999)).all().all())):
+        # if ((df2.applymap(lambda x: isinstance(x, int) or isinstance(x, float)).all().all()) and
+        #         (df2.applymap(lambda y: (y < len(df1) + 1) or (y == 999)).all().all())):
+        if df2.applymap(lambda y: isinstance(y, (int, float)) and ((y < len(df1) + 1) or (y == 999))):
             pass
         else:
             st.write('Something is wrong, most probably an invalid preference for one of the candidates. '
