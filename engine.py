@@ -135,9 +135,8 @@ def step2():
                      f'and upload file again.')
             exit()
         st.write(df1)
-        st.write(df1.applymap(lambda x: isinstance(x, int)).all())
         # checking that all data is ok (first condition = only numbers, second condition = valid preferences)
-        if ((df1.applymap(lambda x: isinstance(x, int)).all().all()) and
+        if ((df1.applymap(lambda x: isinstance(x, int) or x == 999).all().all()) and
                 (df1.applymap(lambda y: (y < len(df2) + 1) or (y == 999)).all().all())):
             pass
         else:
