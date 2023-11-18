@@ -291,6 +291,8 @@ def step2():
                     if len(taken_match) == 0:
                         tentative_appoint.append([position, employee])
                         free_positions.remove(position)
+                        st.write(free_employees)
+                        st.write(employee)
                         free_employees.remove(employee)
                         break
 
