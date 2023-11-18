@@ -57,8 +57,10 @@ def step1():
             worksheet2.set_row(0, 30)
 
         # Writing explanations in first row
-            worksheet1.write('A1', 'Name or Number of position')
-            worksheet1.write('B1', 'Name or Number of 1st priority candidate')
+            # Define text format
+            cell_format = workbook.add_format({'text_wrap': True})
+            worksheet1.write('A1', 'Name/Number of position', cell_format)
+            worksheet1.write('B1', 'Name/Number of 1st priority candidate', cell_format)
 
 
         buffer.seek(0)
