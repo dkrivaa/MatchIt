@@ -74,7 +74,7 @@ def step1():
             l_list = list(string.ascii_uppercase[1:string.ascii_uppercase.index(l_letter.upper()) + 1])
 
             worksheet2.write('A1', 'Name/Number of Candidate', cell_format)
-            for y in u_list:
+            for y in l_list:
                 m = ord(y) - ord('A')
                 worksheet2.write(f'{y}1', f'Name/Number of {m} priority position', cell_format)
 
