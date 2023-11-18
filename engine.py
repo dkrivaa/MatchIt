@@ -143,10 +143,10 @@ def step2():
         invalid_values = df1[invalid_values_condition]
         st.write("Debug Info - Invalid Values:")
         st.write(invalid_values)
-        st.write(type(df1['Position_pref_3'][0]))
+        st.write(type(df1['Position_pref_3'][1]))
 
         # checking that all data is ok (first condition = only numbers, second condition = valid preferences)
-        if ((df1.applymap(lambda x: isinstance(x, int)).all().all()) and
+        if ((df1.applymap(lambda x: isinstance(x, int) or isinstance(x, float)).all().all()) and
                 (df1.applymap(lambda y: (y < len(df2) + 1) or (y == 999)).all().all())):
             pass
         else:
