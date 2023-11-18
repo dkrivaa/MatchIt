@@ -115,7 +115,7 @@ def step2():
         for column in df1.columns[1:]:
             df1[column] = df1[column].apply(extract_numbers_from_string, df=df2_original)
 
-        # Turning all columns into integers
+        # Turning all preference columns into integers
         df1.iloc[:, 1:] = df1.iloc[:, 1:].apply(pd.to_numeric, errors='coerce').astype(int)
 
         # Making values into integers:
@@ -125,11 +125,8 @@ def step2():
         for column in df2.columns[1:]:
             df2[column] = df2[column].apply(extract_numbers_from_string, df=df1_original)
 
-        # Turning all columns into integers
+        # Turning all preference columns into integers
         df2.iloc[:, 1:] = df2.iloc[:, 1:].apply(pd.to_numeric, errors='coerce').astype(int)
-
-        st.write(df1)
-        st.write(df2)
 
         # Checking integrity of data in file
         # Position data:
@@ -141,6 +138,8 @@ def step2():
                      f'**{df1_original.iloc[row_index[0]][0]}**. Please correct the error '
                      f'and upload file again.')
             st.stop()
+
+        st.write(df1.applymap(lambda x: isinstance(x, int)).all().all())
 
         # checking that all data is ok (first condition = only numbers, second condition = valid preferences)
         if ((df1.applymap(lambda x: isinstance(x, int)).all().all()) and
