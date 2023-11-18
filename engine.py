@@ -60,8 +60,8 @@ def step1():
             # Open the 'Position Prefs' sheet again to write additional content
             with pd.ExcelWriter(buffer, engine='xlsxwriter', mode='a') as writer:
                 worksheet1 = writer.sheets['Position Prefs']
-            worksheet1.write('a1', 'Name or Number of position')
-            worksheet1.write('b1', 'Name or Number of 1st priority candidate')
+                worksheet1.write('a1', 'Name or Number of position')
+                worksheet1.write('b1', 'Name or Number of 1st priority candidate')
 
 
         buffer.seek(0)
