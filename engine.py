@@ -117,7 +117,8 @@ def step2():
         st.write(df1.columns)
 
         # Turning all columns into integers
-        df1 = df1.iloc[:, 1:].apply(pd.to_numeric, errors='coerce').astype(int)
+        df1.iloc[:, 1:] = df1.iloc[:, 1:].apply(pd.to_numeric, errors='coerce').astype(int)
+
         st.write(df1.columns)
 
         # Making values into integers:
