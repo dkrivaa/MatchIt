@@ -115,6 +115,7 @@ def step2():
         for column in df1.columns[1:]:
             df1[column] = df1[column].apply(extract_numbers_from_string, df=df2_original)
 
+        # Turning all columns into integers
         df1 = df1.apply(pd.to_numeric, errors='coerce').astype(int)
 
         # Making values into integers:
@@ -123,6 +124,9 @@ def step2():
         # preferences by extracting number from string (if string)
         for column in df2.columns[1:]:
             df2[column] = df2[column].apply(extract_numbers_from_string, df=df1_original)
+
+        # Turning all columns into integers
+        df1 = df1.apply(pd.to_numeric, errors='coerce').astype(int)
 
         # Checking integrity of data in file
         # Position data:
@@ -134,13 +138,6 @@ def step2():
                      f'**{df1_original.iloc[row_index[0]][0]}**. Please correct the error '
                      f'and upload file again.')
             exit()
-
-
-
-        st.write(df1)
-        invalid_values_condition = df1.applymap(lambda x: (isinstance(x, int)))
-        invalid_values = df1[invalid_values_condition]
-        st.write(invalid_values)
 
         # checking that all data is ok (first condition = only numbers, second condition = valid preferences)
         if ((df1.applymap(lambda x: isinstance(x, int)).all().all()) and
@@ -164,7 +161,7 @@ def step2():
 
         # checking that all data is ok (first condition = only numbers, second condition = valid preferences)
         if ((df2.applymap(lambda x: isinstance(x, int)).all().all()) and
-                (df2.applymap(lambda y: (y < len(df2) + 1) or (y == 999)).all().all())):
+                (df2.applymap(lambda y: (y < len(df1) + 1) or (y == 999)).all().all())):
             pass
         else:
             st.write('Something is wrong, most probably an invalid preference for one of the employees. '
