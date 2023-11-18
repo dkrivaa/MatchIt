@@ -3,6 +3,7 @@ import pandas as pd
 import io
 import re
 import random
+import string
 import numpy as np
 
 
@@ -59,8 +60,13 @@ def step1():
         # Writing explanations in first row
             # Define text format
             cell_format = workbook.add_format({'align': 'center', 'valign': 'top', 'text_wrap': True})
+            # Positions
+            # list of letters
+            u_list = list(string.ascii_uppercase[1:string.ascii_uppercase.index(u_letter.upper()) + 1])
+
             worksheet1.write('A1', 'Name/Number of position', cell_format)
-            worksheet1.write('B1', 'Name/Number of 1st priority candidate', cell_format)
+            for x in u_list:
+                worksheet1.write(f'{x}1', 'Name/Number of 1st priority candidate', cell_format)
 
 
         buffer.seek(0)
