@@ -402,7 +402,7 @@ def extract_numbers_from_string(input_string, df):
     else:
         if len(str(input_string)) > 4:
             index_in_df = df[df.iloc[:, 0] == input_string].index.tolist()
-            return index_in_df[0] + 1 if index_in_df else None
+            return index_in_df[0] + 1 if index_in_df else 999
         else:
             return input_string
 
