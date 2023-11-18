@@ -105,7 +105,6 @@ def step2():
     if file is not None:
         df1 = pd.read_excel(file, sheet_name='Position Prefs', skiprows=1).fillna(999)
         df2 = pd.read_excel(file, sheet_name='Candidate Prefs', skiprows=1).fillna(999)
-        st.write(df1)
         df1_original = df1.copy()
         df2_original = df2.copy()
 
@@ -127,8 +126,6 @@ def step2():
         # Position data:
         # checking the lack of identical preference entries
         test1 = (df1.iloc[:, 1:].apply(lambda row: row.dropna().nunique() == len(row), axis=1))
-        st.write(df1)
-        st.write(test1)
         if all(test1):
             pass
         else:
@@ -137,7 +134,7 @@ def step2():
                      f'**{df1_original.iloc[row_index[0]][0]}**. Please correct the error '
                      f'and upload file again.')
             exit()
-
+        st.write(df1)
         # checking that all data is ok (first condition = only numbers, second condition = valid preferences)
         # if ((df1.applymap(lambda x: isinstance(x, int)).all().all()) and
         #         (df1.applymap(lambda y: (y < len(df2) + 1) or (y == 999)).all().all())):
