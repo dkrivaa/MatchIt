@@ -128,6 +128,9 @@ def step2():
         # Turning all columns into integers
         df2 = df2.apply(pd.to_numeric, errors='coerce').astype(int)
 
+        st.write(df1)
+        st.write(df2)
+
         # Checking integrity of data in file
         # Position data:
         # checking the lack of identical preference entries
@@ -137,7 +140,7 @@ def step2():
             st.error(f'Error: Identical preference entries for position: '
                      f'**{df1_original.iloc[row_index[0]][0]}**. Please correct the error '
                      f'and upload file again.')
-            exit()
+            st.stop()
 
         # checking that all data is ok (first condition = only numbers, second condition = valid preferences)
         if ((df1.applymap(lambda x: isinstance(x, int)).all().all()) and
@@ -146,14 +149,13 @@ def step2():
         else:
             st.write('Something is wrong, most probably an invalid preference for one of the positions. '
                      'Please check your file, correct the mistake and upload the file again')
-            exit()
+            st.stop()
 
         # Employee data:
         # checking the lack of identical preference entries
         test2 = (df2.iloc[:, 1:].apply(lambda row: row.dropna().nunique() == len(row), axis=1))
         if not all(test2):
             row_index = [i for i in range(0, len(test2)) if not test2[i]]
-            st.write(row_index)
             st.error(f'Error: Identical preference entries for candidate: '
                      f'**{df2_original.iloc[row_index[0]][0]}**. Please correct the error '
                      f'and upload file again.')
