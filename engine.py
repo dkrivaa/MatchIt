@@ -114,12 +114,9 @@ def step2():
         # preferences by extracting number from string (if string)
         for column in df1.columns[1:]:
             df1[column] = df1[column].apply(extract_numbers_from_string, df=df2_original)
-        st.write(df1.columns)
 
         # Turning all columns into integers
         df1.iloc[:, 1:] = df1.iloc[:, 1:].apply(pd.to_numeric, errors='coerce').astype(int)
-
-        st.write(df1.columns)
 
         # Making values into integers:
         # relevant candidate by index
@@ -129,7 +126,7 @@ def step2():
             df2[column] = df2[column].apply(extract_numbers_from_string, df=df1_original)
 
         # Turning all columns into integers
-        df2 = df2.iloc[:, 1:].apply(pd.to_numeric, errors='coerce').astype(int)
+        df2.iloc[:, 1:] = df2.iloc[:, 1:].apply(pd.to_numeric, errors='coerce').astype(int)
 
         st.write(df1)
         st.write(df2)
