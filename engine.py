@@ -103,7 +103,7 @@ def step2():
 
     file = st.file_uploader('Choose Your Excel file', type=['xlsx', 'xls'])
     if file is not None:
-        df1 = pd.read_excel(file, sheet_name='Position Prefs', skiprows=1).fillna(999, inplace=True)
+        df1 = pd.read_excel(file, sheet_name='Position Prefs', skiprows=1).fillna(999)
         df2 = pd.read_excel(file, sheet_name='Candidate Prefs', skiprows=1).fillna(999)
         df1_original = df1.copy()
         df2_original = df2.copy()
