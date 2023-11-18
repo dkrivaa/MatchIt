@@ -106,9 +106,6 @@ def step2():
         df1 = pd.read_excel(file, sheet_name='Position Prefs', skiprows=1).fillna(999)
         df2 = pd.read_excel(file, sheet_name='Candidate Prefs', skiprows=1).fillna(999)
 
-        st.write(df1)
-        st.write(df2)
-
         df1_original = df1.copy()
         df2_original = df2.copy()
 
@@ -155,6 +152,7 @@ def step2():
             pass
         else:
             row_index = [i for i in range(0, len(test2)) if test2[i] is False]
+            st.write(row_index)
             st.error(f'Error: Identical preference entries for employee: '
                      f'{df2_original.iloc[row_index[0]][0]}. Please correct the error '
                      f'and upload file again.')
