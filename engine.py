@@ -58,7 +58,7 @@ def step1():
 
         # Writing explanations in first row
             # Define text format
-            cell_format = workbook.add_format({'align': 'center', 'text_wrap': True})
+            cell_format = workbook.add_format({'align': 'center', 'valign': 'top', 'text_wrap': True})
             worksheet1.write('A1', 'Name/Number of position', cell_format)
             worksheet1.write('B1', 'Name/Number of 1st priority candidate', cell_format)
 
