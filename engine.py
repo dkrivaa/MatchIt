@@ -67,7 +67,7 @@ def step1():
             worksheet1.write('A1', 'Name/Number of position', cell_format)
             for x in u_list:
                 n = ord(x) - ord('A') + 1
-                worksheet1.write(f'{x}1', f'Name/Number of {n}st priority candidate', cell_format)
+                worksheet1.write(f'{x}1', f'Name/Number of {n} priority candidate', cell_format)
 
 
         buffer.seek(0)
