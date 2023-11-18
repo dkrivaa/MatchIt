@@ -78,6 +78,11 @@ def step1():
                 m = ord(y) - ord('A')
                 worksheet2.write(f'{y}1', f'Name/Number of {m} priority position', cell_format)
 
+            # Setting zoom level of worksheets
+            worksheet1.set_zoom(150)
+            worksheet2.set_zoom(150)
+
+
         buffer.seek(0)
 
         st.download_button(
