@@ -333,7 +333,7 @@ def step2():
                 real_position_list.append(real_position)
                 real_candidate_list.append(real_candidate)
                 # Writing the results to screen and adapt the text to context
-                st.write(f'Appoint **{real_candidate}** to **{real_position}**')
+                st.write(f'Match **{real_candidate}** with **{real_position}**')
 
                 # Calculating how many got one of top wishes
                 if tentative_appoint[i][1] in position_dict[tentative_appoint[i][0]]:
