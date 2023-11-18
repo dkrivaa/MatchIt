@@ -53,8 +53,8 @@ def step1():
             worksheet2.set_column(f'A:{l_letter}', 15)
 
             # Setting height of first line
-            worksheet1.set_row(0, 30)
-            worksheet2.set_row(0, 30)
+            worksheet1.set_row(0, 50)
+            worksheet2.set_row(0, 50)
 
         # Writing explanations in first row
             # Define text format
