@@ -12,7 +12,10 @@ def step1():
     st.markdown('___')
 
     # Step 1
-    st.write('### Step 1 - Make Excel file for download')
+    if lang == 'English':
+        st.write('### Step 1 - Make Excel file for download')
+    else:
+        st.write('### שלב א - הכנת קובץ אקסל להורדה')
     col1, col2 = st.columns(2)
     with col1:
         upperhand = st.number_input('Max preferences Manager:', min_value=1)
