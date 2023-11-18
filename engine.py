@@ -148,12 +148,13 @@ def step2():
         # Employee data:
         # checking the lack of identical preference entries
         test2 = (df2.iloc[:, 1:].apply(lambda row: row.dropna().nunique() == len(row), axis=1))
+        st.write(type(test2))
         if all(test2):
             pass
         else:
             row_index = [i for i in range(0, len(test2)) if test2[i] is False]
             st.write(row_index)
-            st.error(f'Error: Identical preference entries for employee: '
+            st.error(f'Error: Identical preference entries for candidate: '
                      f'{df2_original.iloc[row_index[0]][0]}. Please correct the error '
                      f'and upload file again.')
             exit()
