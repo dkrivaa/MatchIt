@@ -128,7 +128,7 @@ def step2():
         # Turning all preference columns into integers
         df2.iloc[:, 1:] = df2.iloc[:, 1:].apply(pd.to_numeric, errors='coerce').astype(int)
 
-        invalid_values_condition = df2.applymap(lambda x: not (isinstance(x, int) or x == 999))
+        invalid_values_condition = df2.applymap(lambda y: (y < len(df1) + 1) or (y == 999))
         invalid_values = df2[invalid_values_condition]
         st.write("Debug Info - Invalid Values:")
         st.write(invalid_values)
