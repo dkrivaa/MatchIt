@@ -139,15 +139,15 @@ def step2():
         # checking that all data is ok (first condition = only numbers, second condition = valid preferences)
         # if ((df1.applymap(lambda x: isinstance(x, int) or x == 999).all().all()) and
         #         (df1.applymap(lambda y: (y < len(df2) + 1) or (y == 999)).all().all())):
-        valid_preferences_condition = df1.applymap(lambda y: (y < len(df2) + 1) or (y == 999))
+        valid_preferences_condition = df1.applymap(lambda x: isinstance(x, int) or x == 999)
         st.write(valid_preferences_condition)
 
-        if (df1.applymap(lambda x: isinstance(x, int) or x == 999)).all().all() and valid_preferences_condition:
-            pass
-        else:
-            st.write('Something is wrong, most probably an invalid preference for one of the positions. '
-                     'Please check your file, correct the mistake and upload the file again')
-            exit()
+        # if (df1.applymap(lambda x: isinstance(x, int) or x == 999)).all().all() and valid_preferences_condition:
+        #     pass
+        # else:
+        #     st.write('Something is wrong, most probably an invalid preference for one of the positions. '
+        #              'Please check your file, correct the mistake and upload the file again')
+        #     exit()
 
         # Employee data:
         # checking the lack of identical preference entries
