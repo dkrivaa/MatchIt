@@ -36,7 +36,7 @@ def step1():
     with io.BytesIO() as buffer:
         # Use ExcelWriter to write multiple sheets to the buffer
         with pd.ExcelWriter(buffer, engine='xlsxwriter') as writer:
-            df1.to_excel(writer, sheet_name='Position Prefs', index=False)
+            df1.to_excel(writer, sheet_name='Position Prefs', startrow=0, startcol=1, index=False)
             df2.to_excel(writer, sheet_name='Candidate Prefs', index=False)
 
             # Defining the layout of excel file
