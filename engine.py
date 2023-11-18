@@ -39,12 +39,17 @@ def step1():
             df1.to_excel(writer, sheet_name='Position Prefs', index=False)
             df2.to_excel(writer, sheet_name='Candidate Prefs', index=False)
 
-            # Get the xlsxwriter workbook and worksheet objects
+            # Defining the layout of excel file
+
+            # Getting the column letter of last column in excel file (two sheets)
+            u_letter = chr(ord('A') + upperhand - 1)
+            l_letter = chr(ord('A') + lowerhand - 1)
+
             workbook = writer.book
             worksheet = writer.sheets['Position Prefs']
 
             # Set column widths (adjust the widths as needed)
-            worksheet.set_column('A:B', 15)  # Set column A and B width to 15
+            worksheet.set_column(f'A:{u_letter}', 15)  # Set column A and B width to 15
 
         buffer.seek(0)
 
