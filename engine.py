@@ -106,6 +106,9 @@ def step2():
         df1 = pd.read_excel(file, sheet_name='Position Prefs', skiprows=1).fillna(999)
         df2 = pd.read_excel(file, sheet_name='Candidate Prefs', skiprows=1).fillna(999)
 
+        st.write(df1)
+        st.write(df2)
+
         df1_original = df1.copy()
         df2_original = df2.copy()
 
