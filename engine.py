@@ -7,7 +7,7 @@ import numpy as np
 
 
 def step1():
-    st.title('Match Positions & Candidates')
+    st.title('MatchIT - Positions & Candidates')
     st.markdown('___')
 
     # Step 1
@@ -25,11 +25,6 @@ def step1():
     upper_variables, lower_variables = makefile(upperhand, lowerhand)
     upper_dict.update(upper_variables)
     lower_dict.update(lower_variables)
-    #
-    # with col1:
-    #     st.write(upper_dict)
-    # with col2:
-    #     st.write(lower_dict)
 
     df1 = pd.DataFrame(upper_dict)
     df2 = pd.DataFrame(lower_dict)
