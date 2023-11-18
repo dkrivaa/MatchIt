@@ -8,17 +8,17 @@ import numpy as np
 
 
 def step1():
-    st.title('MatchIT - Positions & Candidates')
+    st.title('MatchIT')
     st.markdown('___')
 
     # Step 1
     st.write('### Step 1 - Make Excel file for download')
     col1, col2 = st.columns(2)
     with col1:
-        upperhand = st.number_input('Max preferences Employer:', min_value=1)
+        upperhand = st.number_input('Max preferences Manager:', min_value=1)
         # st.write(upperhand)
     with col2:
-        lowerhand = st.number_input('Max preferences Employee:', min_value=1)
+        lowerhand = st.number_input('Max preferences Candidate:', min_value=1)
         # st.write(lowerhand)
 
     upper_dict = {'Position': []}
