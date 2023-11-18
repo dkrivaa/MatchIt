@@ -126,7 +126,7 @@ def step2():
             df2[column] = df2[column].apply(extract_numbers_from_string, df=df1_original)
 
         # Turning all columns into integers
-        df1 = df1.apply(pd.to_numeric, errors='coerce').astype(int)
+        df2 = df2.apply(pd.to_numeric, errors='coerce').astype(int)
 
         # Checking integrity of data in file
         # Position data:
