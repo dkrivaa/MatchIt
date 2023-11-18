@@ -164,7 +164,7 @@ def step2():
                 (df2.applymap(lambda y: (y < len(df1) + 1) or (y == 999)).all().all())):
             pass
         else:
-            st.write('Something is wrong, most probably an invalid preference for one of the employees. '
+            st.write('Something is wrong, most probably an invalid preference for one of the candidates. '
                      'Please check your file, correct the mistake and upload the file again')
             exit()
 
