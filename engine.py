@@ -20,8 +20,8 @@ def step1():
         lowerhand = st.number_input('Max preferences Employee:', min_value=1)
         # st.write(lowerhand)
 
-    upper_dict = {'position': []}
-    lower_dict = {'candidate': []}
+    upper_dict = {'Position': []}
+    lower_dict = {'Candidate': []}
     upper_variables, lower_variables = makefile(upperhand, lowerhand)
     upper_dict.update(upper_variables)
     lower_dict.update(lower_variables)
@@ -45,11 +45,12 @@ def step1():
             u_letter = chr(ord('A') + upperhand)
             l_letter = chr(ord('A') + lowerhand - 1)
 
-            workbook = writer.book
-            worksheet = writer.sheets['Position Prefs']
-
             # Set column widths (adjust the widths as needed)
-            worksheet.set_column(f'A:{u_letter}', 15)  # Set column A and B width to 15
+            workbook = writer.book
+            worksheet1 = writer.sheets['Position Prefs']
+            worksheet2 = writer.sheets['Candidate Prefs']
+            worksheet1.set_column(f'A:{u_letter}', 15)
+            worksheet2.set_column(f'A:{l_letter}', 15)
 
         buffer.seek(0)
 
