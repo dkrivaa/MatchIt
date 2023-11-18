@@ -43,7 +43,7 @@ def step1():
 
             # Getting the column letter of last column in excel file (two sheets)
             u_letter = chr(ord('A') + upperhand)
-            l_letter = chr(ord('A') + lowerhand - 1)
+            l_letter = chr(ord('A') + lowerhand)
 
             # Set column widths (adjust the widths as needed)
             workbook = writer.book
