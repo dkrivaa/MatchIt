@@ -71,7 +71,7 @@ def step1():
 
             # Candidates
             # list of letters
-            u_list = list(string.ascii_uppercase[1:string.ascii_uppercase.index(u_letter.upper()) + 1])
+            l_list = list(string.ascii_uppercase[1:string.ascii_uppercase.index(l_letter.upper()) + 1])
 
             worksheet2.write('A1', 'Name/Number of Candidate', cell_format)
             for y in u_list:
