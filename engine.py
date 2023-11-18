@@ -36,8 +36,8 @@ def step1():
     with io.BytesIO() as buffer:
         # Use ExcelWriter to write multiple sheets to the buffer
         with pd.ExcelWriter(buffer, engine='xlsxwriter') as writer:
-            df1.to_excel(writer, sheet_name='Position Prefs', startrow=2, startcol=1, index=False)
-            df2.to_excel(writer, sheet_name='Candidate Prefs', startrow=2, startcol=1, index=False)
+            df1.to_excel(writer, sheet_name='Position Prefs', startrow=1, startcol=0, index=False)
+            df2.to_excel(writer, sheet_name='Candidate Prefs', startrow=1, startcol=0, index=False)
 
             # Defining the layout of Excel file
 
@@ -53,7 +53,7 @@ def step1():
             worksheet2.set_column(f'A:{l_letter}', 15)
 
             # Setting height of first line
-            worksheet1.set_row(1, 30)
+            worksheet1.set_row(0, 30)
 
         buffer.seek(0)
 
