@@ -8,6 +8,7 @@ import string
 
 def step1():
     st.title('MatchIT')
+    lang = st.selectbox('Choose Language', ('English', 'Hebrew'), index=0)
     st.markdown('___')
 
     # Step 1
