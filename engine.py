@@ -4,7 +4,6 @@ import io
 import re
 import random
 import string
-import numpy as np
 
 
 def step1():
