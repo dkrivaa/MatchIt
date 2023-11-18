@@ -126,14 +126,15 @@ def step2():
         # Position data:
         # checking the lack of identical preference entries
         test1 = (df1.iloc[:, 1:].apply(lambda row: row.dropna().nunique() == len(row), axis=1))
-        if all(test1):
-            pass
-        else:
+        if not all(test1):
             row_index = [i for i in range(0, len(test1)) if not test1[i]]
             st.error(f'Error: Identical preference entries for position: '
                      f'**{df1_original.iloc[row_index[0]][0]}**. Please correct the error '
                      f'and upload file again.')
             exit()
+
+
+
         st.write(df1)
         # checking that all data is ok (first condition = only numbers, second condition = valid preferences)
         if ((df1.applymap(lambda x: isinstance(x, int) or x == 999).all().all()) and
