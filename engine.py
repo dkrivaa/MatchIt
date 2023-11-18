@@ -103,7 +103,7 @@ def step2():
 
     file = st.file_uploader('Choose Your Excel file', type=['xlsx', 'xls'])
     if file is not None:
-        df1 = pd.read_excel(file, sheet_name='Position Prefs', skiprows=1).fillna(int(999))
+        df1 = pd.read_excel(file, sheet_name='Position Prefs', skiprows=1).fillna(999)
         df2 = pd.read_excel(file, sheet_name='Candidate Prefs', skiprows=1).fillna(999)
         df1_original = df1.copy()
         df2_original = df2.copy()
@@ -135,10 +135,10 @@ def step2():
                      f'and upload file again.')
             exit()
         st.write(df1)
+        st.write(df1.applymap(lambda x: isinstance(x, int)).all().all())
         # checking that all data is ok (first condition = only numbers, second condition = valid preferences)
-        # if ((df1.applymap(lambda x: isinstance(x, int)).all().all()) and
-        #         (df1.applymap(lambda y: (y < len(df2) + 1) or (y == 999)).all().all())):
-        if df1.applymap(lambda x: isinstance(x, int)).all().all():
+        if ((df1.applymap(lambda x: isinstance(x, int)).all().all()) and
+                (df1.applymap(lambda y: (y < len(df2) + 1) or (y == 999)).all().all())):
             pass
         else:
             st.write('Something is wrong, most probably an invalid preference for one of the positions. '
