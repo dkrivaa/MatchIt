@@ -117,7 +117,7 @@ def step2():
             df1[column] = df1[column].apply(extract_numbers_from_string, df=df2_original)
 
         # Making values into integers:
-        # relevant employee by index
+        # relevant candidate by index
         df2.iloc[:, 0] = df2.index + 1
         # preferences by extracting number from string (if string)
         for column in df2.columns[1:]:
@@ -140,11 +140,11 @@ def step2():
 
         # checking that all data is ok (first condition = only numbers, second condition = valid preferences)
         if ((df1.applymap(lambda x: isinstance(x, int)).all().all()) and
-                (df1.applymap(lambda y: (y < len(df2) + 1) or (y == 999))).all().all()):
+                (df1.applymap(lambda y: (y < len(df2) + 1) or (y == 999)).all()).all()):
             pass
         else:
             st.write('Something is wrong, most probably an invalid preference for one of the positions. '
-                     'Please chck your file, correct the mistake and upload the file again')
+                     'Please check your file, correct the mistake and upload the file again')
             exit()
 
         # Employee data:
@@ -162,7 +162,7 @@ def step2():
 
         # checking that all data is ok (first condition = only numbers, second condition = valid preferences)
         if ((df2.applymap(lambda x: isinstance(x, int)).all().all()) and
-                (df2.applymap(lambda y: (y < len(df2) + 1) or (y == 999))).all().all()):
+                (df2.applymap(lambda y: (y < len(df2) + 1) or (y == 999)).all()).all()):
             pass
         else:
             st.write('Something is wrong, most probably an invalid preference for one of the employees. '
