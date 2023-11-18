@@ -39,6 +39,13 @@ def step1():
             df1.to_excel(writer, sheet_name='Position Prefs', index=False)
             df2.to_excel(writer, sheet_name='Candidate Prefs', index=False)
 
+            # Get the xlsxwriter workbook and worksheet objects
+            workbook = writer.book
+            worksheet = writer.sheets['Position Prefs']
+
+            # Set column widths (adjust the widths as needed)
+            worksheet.set_column('A:B', 15)  # Set column A and B width to 15
+
         buffer.seek(0)
 
         st.download_button(
