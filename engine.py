@@ -128,12 +128,6 @@ def step2():
         # Turning all preference columns into integers
         df2.iloc[:, 1:] = df2.iloc[:, 1:].apply(pd.to_numeric, errors='coerce').astype(int)
 
-        invalid_values_condition = df2.applymap(lambda y: (y < len(df1) + 1) or (y == 999))
-        invalid_values = df2[~invalid_values_condition]
-        st.write("Debug Info - Invalid Values:")
-        st.write(df2)
-        st.write(df2.dtypes)
-        st.write(invalid_values)
 
         # Checking integrity of data in file
         # Position data:
@@ -147,8 +141,8 @@ def step2():
             st.stop()
 
         # checking that all data is ok (first condition = only numbers, second condition = valid preferences)
-        if ((df1.applymap(lambda x: isinstance(x, int) or isinstance(x, float)).all().all()) and
-                (df1.applymap(lambda y: (y < len(df2) + 1) or (y == 999)).all().all())):
+        if ((df1.iloc[:, 1:].applymap(lambda x: isinstance(x, int) or isinstance(x, float)).all().all()) and
+                (df1.iloc[:, 1:].applymap(lambda y: (y < len(df2) + 1) or (y == 999)).all().all())):
             pass
         else:
             st.write('Something is wrong, most probably an invalid preference for one of the positions. '
