@@ -281,7 +281,7 @@ def step2():
             stable_matching()
 
             # Showing results
-            st.subheader('The optimal appointments:')
+            st.subheader('The optimal MATCH:')
             pos_count = 0
             emp_count = 0
 
