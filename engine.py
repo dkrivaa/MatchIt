@@ -139,7 +139,11 @@ def step2():
                      f'and upload file again.')
             st.stop()
 
-        st.write(df1.applymap(lambda x: isinstance(x, int)).all().all())
+        invalid_values_condition = df1.apply(lambda col: ~col.apply(lambda x: isinstance(x, int) or x == 999))
+        invalid_values = df1[
+            df1.iloc[:, 1:].apply(lambda row: any(row != 999), axis=1) & invalid_values_condition.any(axis=1)]
+        st.write("Debug Info - Invalid Values:")
+        st.write(invalid_values)
 
         # checking that all data is ok (first condition = only numbers, second condition = valid preferences)
         if ((df1.applymap(lambda x: isinstance(x, int)).all().all()) and
