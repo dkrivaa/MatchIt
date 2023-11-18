@@ -103,7 +103,7 @@ def step2():
 
     file = st.file_uploader('Choose Your Excel file', type=['xlsx', 'xls'])
     if file is not None:
-        df1 = pd.read_excel(file, sheet_name='Position Prefs', skiprows=1).fillna(0)
+        df1 = pd.read_excel(file, sheet_name='Position Prefs', skiprows=1).fillna(999)
         df2 = pd.read_excel(file, sheet_name='Candidate Prefs', skiprows=1).fillna(999)
         df1_original = df1.copy()
         df2_original = df2.copy()
@@ -114,6 +114,8 @@ def step2():
         # preferences by extracting number from string (if string)
         for column in df1.columns[1:]:
             df1[column] = df1[column].apply(extract_numbers_from_string, df=df2_original)
+
+        df1 = df1.apply(pd.to_numeric, errors='coerce').astype(int)
 
         # Making values into integers:
         # relevant candidate by index
