@@ -127,6 +127,7 @@ def step2():
         # Position data:
         # checking the lack of identical preference entries
         test1 = (df1.iloc[:, 1:].apply(lambda row: row.dropna().nunique() == len(row), axis=1))
+        st.write(df1)
         st.write(test1)
         if all(test1):
             pass
