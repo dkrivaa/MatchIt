@@ -73,10 +73,10 @@ def step1():
             # list of letters
             u_list = list(string.ascii_uppercase[1:string.ascii_uppercase.index(u_letter.upper()) + 1])
 
-            worksheet1.write('A1', 'Name/Number of Candidate', cell_format)
-            for x in u_list:
-                n = ord(x) - ord('A')
-                worksheet1.write(f'{x}1', f'Name/Number of {n} priority position', cell_format)
+            worksheet2.write('A1', 'Name/Number of Candidate', cell_format)
+            for y in u_list:
+                m = ord(y) - ord('A')
+                worksheet2.write(f'{y}1', f'Name/Number of {m} priority position', cell_format)
 
 
         buffer.seek(0)
