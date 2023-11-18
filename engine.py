@@ -141,7 +141,7 @@ def step2():
         # checking that all data is ok (first condition = only numbers, second condition = valid preferences)
         # if ((df1.applymap(lambda x: isinstance(x, int)).all().all()) and
         #         (df1.applymap(lambda y: (y < len(df2) + 1) or (y == 999)).all().all())):
-        if df1.applymap(lambda y: (y < len(df2) + 1) or (y == 999)).all().all():
+        if df1.applymap(lambda x: isinstance(x, int)).all().all():
             pass
         else:
             st.write('Something is wrong, most probably an invalid preference for one of the positions. '
