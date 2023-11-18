@@ -136,8 +136,10 @@ def step2():
 
 
         st.write(df1)
-        valid_preferences_condition = df1.applymap(lambda x: isinstance(x, int) or x == 999)
-        st.write(valid_preferences_condition)
+        valid_preferences_condition = df1.apply(lambda col: ~col.apply(lambda x: isinstance(x, int) or x == 999))
+        invalid_values = df1[valid_preferences_condition.any(axis=1)]
+        st.write(invalid_values)
+
         # checking that all data is ok (first condition = only numbers, second condition = valid preferences)
         if ((df1.applymap(lambda x: isinstance(x, int) or x == 999).all().all()) and
                 (df1.applymap(lambda y: (y < len(df2) + 1) or (y == 999)).all().all())):
