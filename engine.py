@@ -22,6 +22,7 @@ def step1():
         text3 = 'Max preferences Candidate:'
         text4 = '#### Download Excel file to enter data'
         text5 = '(Remember to fill out both sheets)'
+        text6 = 'Download Excel'
 
 
 
@@ -31,6 +32,7 @@ def step1():
         text3 = 'מקסימום בחירות מועמד'
         text4 = '### הורדת קובץ אקסל להכנסת נתונים'
         text5 = '(לזכור להכניס נתונים בשתי הגליונות)'
+        text6 = 'הורדת אקסל'
 
 
 
