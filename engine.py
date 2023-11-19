@@ -14,12 +14,22 @@ def step1():
     if lang not in st.session_state:
         st.session_state.lang = lang
 
+    #__________________________________
+    # Notes in english and hebrew
+    if lang == 'English':
+        text1 = '### Step 1 - Make Excel file for download'
+
+    else if lang = 'Hebrew':
+        text1 = '### שלב 1 - הכנת קובץ אקסל להורדה'
+
+
+
+
+
+
     st.markdown('___')
     # Step 1
-    if lang == 'English':
-        st.write('### Step 1 - Make Excel file for download')
-    else:
-        st.write('### שלב 1 - הכנת קובץ אקסל להורדה')
+    st.write(text1)
     col1, col2 = st.columns(2)
     with col1:
         upperhand = st.number_input('Max preferences Manager:', min_value=1)
