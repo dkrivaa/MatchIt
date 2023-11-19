@@ -129,6 +129,10 @@ def step1():
 
 def step2():
     # Step 2
+
+    lang = st.session_state.lang
+    st.write(lang)
+
     st.write('### Step 2 - Upload Your Excel file (after filling in data)')
 
     file = st.file_uploader('Choose Your Excel file', type=['xlsx', 'xls'])
