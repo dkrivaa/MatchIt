@@ -116,7 +116,7 @@ def step1():
         buffer.seek(0)
 
         st.download_button(
-            label="Download Excel",
+            label=text6,
             data=buffer.read(),
             file_name="Preferences.xlsx",
             type='primary',
