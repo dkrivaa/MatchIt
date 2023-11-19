@@ -35,7 +35,8 @@ def step1():
         text5 = '(לזכור להכניס נתונים בשתי הגליונות)'
         text6 = 'הורדת אקסל'
         text_excel1 = 'שם/מספר של משרה'
-        text_excel2a = 'Name/Number of '
+        text_excel2a = 'שם/מספר של מועמד מועדף '
+        text_excel2b = ''
     # ________________________________
 
     st.markdown('___')
