@@ -8,7 +8,12 @@ import string
 
 def step1():
     st.title('MatchIT')
+
+    # Choosing language
     lang = st.radio('**Choose Language**', ['English', 'Hebrew'])
+    if lang not in st.session_state:
+        st.session_state.lang = lang
+
     st.markdown('___')
     # Step 1
     if lang == 'English':
