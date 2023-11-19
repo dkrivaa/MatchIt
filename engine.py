@@ -24,6 +24,8 @@ def step1():
         text5 = '(Remember to fill out both sheets)'
         text6 = 'Download Excel'
         text_excel1 = 'Name/Number of Position'
+        text_excel2a = 'Name/Number of '
+        text_excel2b = 'priority candidate'
 
     elif lang == 'Hebrew':
         text1 = '### שלב 1 - הכנת קובץ אקסל להורדה'
@@ -33,6 +35,7 @@ def step1():
         text5 = '(לזכור להכניס נתונים בשתי הגליונות)'
         text6 = 'הורדת אקסל'
         text_excel1 = 'שם/מספר של משרה'
+        text_excel2a = 'Name/Number of '
     # ________________________________
 
     st.markdown('___')
@@ -92,7 +95,7 @@ def step1():
             worksheet1.write('A1', text_excel1, cell_format)
             for x in u_list:
                 n = ord(x) - ord('A')
-                worksheet1.write(f'{x}1', f'Name/Number of {n} priority candidate', cell_format)
+                worksheet1.write(f'{x}1', f'{text_excel2a} {n} {text_excel2b}', cell_format)
 
             # Candidates
             # list of letters
