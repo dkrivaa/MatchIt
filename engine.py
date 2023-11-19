@@ -15,7 +15,7 @@ def step1():
         st.session_state.lang = lang
 
     # __________________________________
-    # Notes in english and hebrew
+    # Text in english and hebrew
     if lang == 'English':
         text1 = '### Step 1 - Make Excel file for download'
         text2 = 'Max preferences Manager:'
@@ -24,8 +24,6 @@ def step1():
         text5 = '(Remember to fill out both sheets)'
         text6 = 'Download Excel'
 
-
-
     elif lang == 'Hebrew':
         text1 = '### שלב 1 - הכנת קובץ אקסל להורדה'
         text2 = 'מקסימום בחירות מנהל'
@@ -33,12 +31,7 @@ def step1():
         text4 = '### הורדת קובץ אקסל להכנסת נתונים'
         text5 = '(לזכור להכניס נתונים בשתי הגליונות)'
         text6 = 'הורדת אקסל'
-
-
-
-
-
-
+    # ________________________________
 
     st.markdown('___')
     # Step 1
@@ -129,11 +122,28 @@ def step1():
 
 def step2():
     # Step 2
-
     lang = st.session_state.lang
-    st.write(lang)
 
-    st.write('### Step 2 - Upload Your Excel file (after filling in data)')
+    # __________________________________
+    # Text in english and hebrew
+    if lang == 'English':
+        text7 = '### Step 2 - Upload Your Excel file (after filling in data)'
+        text2 = 'Max preferences Manager:'
+        text3 = 'Max preferences Candidate:'
+        text4 = '#### Download Excel file to enter data'
+        text5 = '(Remember to fill out both sheets)'
+        text6 = 'Download Excel'
+
+    elif lang == 'Hebrew':
+        text7 = '### שלב 2 - העלה קובץ האקסל שלך (לאחר מילוי נתונים)'
+        text2 = 'מקסימום בחירות מנהל'
+        text3 = 'מקסימום בחירות מועמד'
+        text4 = '### הורדת קובץ אקסל להכנסת נתונים'
+        text5 = '(לזכור להכניס נתונים בשתי הגליונות)'
+        text6 = 'הורדת אקסל'
+    # ________________________________
+
+    st.write(text7)
 
     file = st.file_uploader('Choose Your Excel file', type=['xlsx', 'xls'])
     if file is not None:
