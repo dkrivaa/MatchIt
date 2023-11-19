@@ -20,6 +20,8 @@ def step1():
         text1 = '### Step 1 - Make Excel file for download'
         text2 = 'Max preferences Manager:'
         text3 = 'Max preferences Candidate:'
+        text4 = '#### Download Excel file to enter data'
+        text5 = '(Remember to fill out both sheets)'
 
 
 
@@ -27,6 +29,9 @@ def step1():
         text1 = '### שלב 1 - הכנת קובץ אקסל להורדה'
         text2 = 'מקסימום בחירות מנהל'
         text3 = 'מקסימום בחירות מועמד'
+        text4 = '### הורדת קובץ אקסל להכנסת נתונים'
+        text5 = '(לזכור להכניס נתונים בשני הגליונות)'
+
 
 
 
@@ -54,8 +59,8 @@ def step1():
     df2 = pd.DataFrame(lower_dict)
 
     # Download button to export data as Excel
-    st.write("#### Download Excel file to enter data")
-    st.write('(Remember to fill out both sheets)')
+    st.write(text4)
+    st.write(text5)
 
     with io.BytesIO() as buffer:
         # Use ExcelWriter to write multiple sheets to the buffer
