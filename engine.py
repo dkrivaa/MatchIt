@@ -14,13 +14,19 @@ def step1():
     if lang not in st.session_state:
         st.session_state.lang = lang
 
-    #__________________________________
+    # __________________________________
     # Notes in english and hebrew
     if lang == 'English':
         text1 = '### Step 1 - Make Excel file for download'
+        text2 = 'Max preferences Manager:'
+        text3 = 'Max preferences Candidate:'
+
+
 
     elif lang == 'Hebrew':
         text1 = '### שלב 1 - הכנת קובץ אקסל להורדה'
+        text2 = 'מקסימום בחירות מנהל'
+        text3 = 'מקסימום בחירות מועמד'
 
 
 
@@ -32,10 +38,10 @@ def step1():
     st.write(text1)
     col1, col2 = st.columns(2)
     with col1:
-        upperhand = st.number_input('Max preferences Manager:', min_value=1)
+        upperhand = st.number_input(text2, min_value=1)
         # st.write(upperhand)
     with col2:
-        lowerhand = st.number_input('Max preferences Candidate:', min_value=1)
+        lowerhand = st.number_input(text3, min_value=1)
         # st.write(lowerhand)
 
     upper_dict = {'Position': []}
