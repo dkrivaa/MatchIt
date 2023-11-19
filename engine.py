@@ -224,11 +224,17 @@ def step2():
         if lang == 'English':
             text14 = '### Step 3 - Press to MatchIT'
             text15 = 'Press to Continue'
+            text16 = 'Not enough candidates to fill all positions!'
+            text17 = 'Quitting due to inability to find solution for all positions'
+            text18 = 'The optimal MATCH:'
 
 
         elif lang == 'Hebrew':
             text14 = '### שלב 3 - לחץ/י להמשך'
             text15 = 'לחץ/י להמשך'
+            text16 = 'אין מספיק מועמדים למלא את כל המשרות'
+            text17 = 'מפסיק עקב אי יכולת למצוא מענה לכל המשרות'
+            text18 = 'ההתאמה האופטימלית'
 
         # ________________________________
 
@@ -291,7 +297,7 @@ def step2():
 
             def stable_matching():
                 if len(free_positions) > len(free_employees):
-                    st.write('Not enough employees to fill all positions!')
+                    st.write(text16)
                     quit()
 
                 while len(free_positions) > 0:
@@ -302,7 +308,7 @@ def step2():
                         elif 5 <= special_list.count(position) < 10:
                             special_matching(position)
                         else:
-                            st.write('Quitting due to inability to find solution for all positions')
+                            st.write(text17)
                             quit()
 
             def begin_matching(position):
@@ -372,7 +378,6 @@ def step2():
                     tentative_appoint.append([position, chosen_employee[0]])
                     free_positions.remove(position)
                     free_employees.remove(chosen_employee[0])
-                    # st.write(f'{chosen_employee} is tentatively appointed to {position}')
 
                 else:
                     chosen_employee = random.choice(free_employees)
@@ -385,7 +390,7 @@ def step2():
             stable_matching()
 
             # Showing results
-            st.subheader('The optimal MATCH:')
+            st.subheader(text18)
             pos_count = 0
             emp_count = 0
 
@@ -398,7 +403,7 @@ def step2():
                 real_position_list.append(real_position)
                 real_candidate_list.append(real_candidate)
                 # Writing the results to screen and adapt the text to context
-                st.write(f'Match **{real_candidate}** with **{real_position}**')
+                st.write(f'**{real_candidate}** ---> **{real_position}**')
 
                 # Calculating how many got one of top wishes
                 if tentative_appoint[i][1] in position_dict[tentative_appoint[i][0]]:
