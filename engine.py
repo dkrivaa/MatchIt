@@ -128,7 +128,7 @@ def step2():
     # Text in english and hebrew
     if lang == 'English':
         text7 = '### Step 2 - Upload Your Excel file (after filling in data)'
-        text2 = 'Max preferences Manager:'
+        text8 = 'Choose Your Excel file'
         text3 = 'Max preferences Candidate:'
         text4 = '#### Download Excel file to enter data'
         text5 = '(Remember to fill out both sheets)'
@@ -136,7 +136,7 @@ def step2():
 
     elif lang == 'Hebrew':
         text7 = '### שלב 2 - העלה קובץ האקסל שלך (לאחר מילוי נתונים)'
-        text2 = 'מקסימום בחירות מנהל'
+        text8 = 'בחר/י קובץ אקסל'
         text3 = 'מקסימום בחירות מועמד'
         text4 = '### הורדת קובץ אקסל להכנסת נתונים'
         text5 = '(לזכור להכניס נתונים בשתי הגליונות)'
@@ -145,7 +145,7 @@ def step2():
 
     st.write(text7)
 
-    file = st.file_uploader('Choose Your Excel file', type=['xlsx', 'xls'])
+    file = st.file_uploader(text8, type=['xlsx', 'xls'])
     if file is not None:
         df1 = pd.read_excel(file, sheet_name='Position Prefs', skiprows=1).fillna(999)
         df2 = pd.read_excel(file, sheet_name='Candidate Prefs', skiprows=1).fillna(999)
