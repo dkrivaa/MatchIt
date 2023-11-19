@@ -135,6 +135,7 @@ def step2():
         text11a = 'Error: Identical preference entries for candidate: '
         text11b = 'Please correct the error and upload file again.'
         text12 = 'Something is wrong, most probably an invalid preference for one of the candidates. Please check your file, correct the mistake and upload the file again'
+        text13 = '##### Your file was uploaded successfully'
 
     elif lang == 'Hebrew':
         text7 = '### שלב 2 - העלה קובץ האקסל שלך (לאחר מילוי נתונים)'
@@ -145,6 +146,7 @@ def step2():
         text11b = 'שגיאה: העדפות זהות למועמד '
         text11a = 'נא לתקן את השגיאה ותעלה/י קובץ שוב '
         text12 = 'משהו לא תקין, כנראה לגבי העדפה של אחד המועמדים. נא בדוק/י את הקובץ, תתקן/י ותעלה/י את הקובץ שוב'
+        text13 = '##### הקובץ הועלה בהצלחה'
     # ________________________________
 
     st.write(text7)
@@ -210,7 +212,7 @@ def step2():
             st.write(text12)
             exit()
 
-        st.write('##### Your file was uploaded successfully')
+        st.write(text13)
 
         st.header('', divider='orange')
 
