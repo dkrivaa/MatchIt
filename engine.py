@@ -141,9 +141,9 @@ def step2():
         text9b = 'שגיאה: העדפות זהות לאחד המשרות '
         text9a = 'נא לתקן את השגיאה ותעלה/י קובץ שוב '
         text10 = 'משהו לא תקין, בנראה לגבי העדפה של אחד המשרות. נא בדוק/י את הקובץ, תתקן/י ותעלה/י את הקובץ שוב'
-        text11b = 'שגיאה: העדפות זהות לאחד המשרות '
+        text11b = 'שגיאה: העדפות זהות לאחד המועמדים '
         text11a = 'נא לתקן את השגיאה ותעלה/י קובץ שוב '
-        text12 = 'הורדת אקסל'
+        text12 = 'משהו לא תקין, בנראה לגבי העדפה של אחד המועמדים. נא בדוק/י את הקובץ, תתקן/י ותעלה/י את הקובץ שוב'
     # ________________________________
 
     st.write(text7)
@@ -206,8 +206,7 @@ def step2():
                 (df2.iloc[:, 1:].applymap(lambda y: (y < len(df1) + 1) or (y == 999)).all().all())):
             pass
         else:
-            st.write('Something is wrong, most probably an invalid preference for one of the candidates. '
-                     'Please check your file, correct the mistake and upload the file again')
+            st.write(text12)
             exit()
 
         st.write('##### Your file was uploaded successfully')
