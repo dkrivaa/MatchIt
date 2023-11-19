@@ -138,7 +138,7 @@ def step2():
     elif lang == 'Hebrew':
         text7 = '### שלב 2 - העלה קובץ האקסל שלך (לאחר מילוי נתונים)'
         text8 = 'בחר/י קובץ אקסל'
-        text9b = 'שגיאה :העדפות זהות לאחד המשרות '
+        text9b = 'שגיאה: העדפות זהות לאחד המשרות '
         text9a = 'נא לתקן את השגיאה ותעלה/י קובץ שוב '
         text10 = '### הורדת קובץ אקסל להכנסת נתונים'
         text11 = '(לזכור להכניס נתונים בשתי הגליונות)'
@@ -181,7 +181,7 @@ def step2():
         test1 = (df1.iloc[:, 1:].apply(lambda row: row.dropna().nunique() == len(row), axis=1))
         if not all(test1):
             row_index = [i for i in range(0, len(test1)) if not test1[i]]
-            st.error(text9a + f'**{df1_original.iloc[row_index[0]][0]}**. ' + text9b)
+            st.error(text9a + f'**{df1_original.iloc[row_index[0]][0]}** ' + text9b)
             st.stop()
 
         # checking that all data is ok (first condition = only numbers, second condition = valid preferences)
