@@ -19,7 +19,7 @@ def step1():
     if lang == 'English':
         text1 = '### Step 1 - Make Excel file for download'
 
-    else if lang = 'Hebrew':
+    elif lang == 'Hebrew':
         text1 = '### שלב 1 - הכנת קובץ אקסל להורדה'
 
 
