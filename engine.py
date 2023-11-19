@@ -23,6 +23,7 @@ def step1():
         text4 = '#### Download Excel file to enter data'
         text5 = '(Remember to fill out both sheets)'
         text6 = 'Download Excel'
+        text_excel1 = 'Name/Number of Position'
 
     elif lang == 'Hebrew':
         text1 = '### שלב 1 - הכנת קובץ אקסל להורדה'
@@ -31,6 +32,7 @@ def step1():
         text4 = '### הורדת קובץ אקסל להכנסת נתונים'
         text5 = '(לזכור להכניס נתונים בשתי הגליונות)'
         text6 = 'הורדת אקסל'
+        text_excel1 = 'שם/מספר של משרה'
     # ________________________________
 
     st.markdown('___')
@@ -87,7 +89,7 @@ def step1():
             # list of letters
             u_list = list(string.ascii_uppercase[1:string.ascii_uppercase.index(u_letter.upper()) + 1])
 
-            worksheet1.write('A1', 'Name/Number of Position', cell_format)
+            worksheet1.write('A1', text_excel1, cell_format)
             for x in u_list:
                 n = ord(x) - ord('A')
                 worksheet1.write(f'{x}1', f'Name/Number of {n} priority candidate', cell_format)
