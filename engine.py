@@ -131,7 +131,7 @@ def step2():
         text8 = 'Choose Your Excel file'
         text9a = 'Error: Identical preference entries for position: '
         text9b = 'Please correct the error and upload file again.'
-        text10 = '#### Download Excel file to enter data'
+        text10 = 'Something is wrong, most probably an invalid preference for one of the positions. Please check your file, correct the mistake and upload the file again'
         text11 = '(Remember to fill out both sheets)'
         text12 = 'Download Excel'
 
@@ -140,7 +140,7 @@ def step2():
         text8 = 'בחר/י קובץ אקסל'
         text9b = 'שגיאה: העדפות זהות לאחד המשרות '
         text9a = 'נא לתקן את השגיאה ותעלה/י קובץ שוב '
-        text10 = '### הורדת קובץ אקסל להכנסת נתונים'
+        text10 = 'משהו לא תקין, סביר לגבי העדפה של אחד המשרות. נא בדוק/י את הקובץ, תתקן/י ותעלה/י את הקובץ שוב'
         text11 = '(לזכור להכניס נתונים בשתי הגליונות)'
         text12 = 'הורדת אקסל'
     # ________________________________
@@ -189,8 +189,7 @@ def step2():
                 (df1.iloc[:, 1:].applymap(lambda y: (y < len(df2) + 1) or (y == 999)).all().all())):
             pass
         else:
-            st.write('Something is wrong, most probably an invalid preference for one of the positions. '
-                     'Please check your file, correct the mistake and upload the file again')
+            st.write(text10)
             st.stop()
 
         # Employee data:
