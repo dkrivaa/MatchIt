@@ -129,18 +129,19 @@ def step2():
     if lang == 'English':
         text7 = '### Step 2 - Upload Your Excel file (after filling in data)'
         text8 = 'Choose Your Excel file'
-        text3 = 'Max preferences Candidate:'
-        text4 = '#### Download Excel file to enter data'
-        text5 = '(Remember to fill out both sheets)'
-        text6 = 'Download Excel'
+        text9a = 'Error: Identical preference entries for position: '
+        text9b = 'Please correct the error and upload file again.'
+        text10 = '#### Download Excel file to enter data'
+        text11 = '(Remember to fill out both sheets)'
+        text12 = 'Download Excel'
 
     elif lang == 'Hebrew':
         text7 = '### שלב 2 - העלה קובץ האקסל שלך (לאחר מילוי נתונים)'
         text8 = 'בחר/י קובץ אקסל'
-        text3 = 'מקסימום בחירות מועמד'
-        text4 = '### הורדת קובץ אקסל להכנסת נתונים'
-        text5 = '(לזכור להכניס נתונים בשתי הגליונות)'
-        text6 = 'הורדת אקסל'
+        text9 = 'מקסימום בחירות מועמד'
+        text10 = '### הורדת קובץ אקסל להכנסת נתונים'
+        text11 = '(לזכור להכניס נתונים בשתי הגליונות)'
+        text12 = 'הורדת אקסל'
     # ________________________________
 
     st.write(text7)
@@ -179,9 +180,7 @@ def step2():
         test1 = (df1.iloc[:, 1:].apply(lambda row: row.dropna().nunique() == len(row), axis=1))
         if not all(test1):
             row_index = [i for i in range(0, len(test1)) if not test1[i]]
-            st.error(f'Error: Identical preference entries for position: '
-                     f'**{df1_original.iloc[row_index[0]][0]}**. Please correct the error '
-                     f'and upload file again.')
+            st.error(text9a + f'**{df1_original.iloc[row_index[0]][0]}**.' + text9b)
             st.stop()
 
         # checking that all data is ok (first condition = only numbers, second condition = valid preferences)
