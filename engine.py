@@ -141,7 +141,8 @@ def step2():
         text9b = 'שגיאה: העדפות זהות לאחד המשרות '
         text9a = 'נא לתקן את השגיאה ותעלה/י קובץ שוב '
         text10 = 'משהו לא תקין, בנראה לגבי העדפה של אחד המשרות. נא בדוק/י את הקובץ, תתקן/י ותעלה/י את הקובץ שוב'
-        text11 = '(לזכור להכניס נתונים בשתי הגליונות)'
+        text11b = 'שגיאה: העדפות זהות לאחד המשרות '
+        text11a = 'נא לתקן את השגיאה ותעלה/י קובץ שוב '
         text12 = 'הורדת אקסל'
     # ________________________________
 
@@ -197,9 +198,7 @@ def step2():
         test2 = (df2.iloc[:, 1:].apply(lambda row: row.dropna().nunique() == len(row), axis=1))
         if not all(test2):
             row_index = [i for i in range(0, len(test2)) if not test2[i]]
-            st.error(f'Error: Identical preference entries for candidate: '
-                     f'**{df2_original.iloc[row_index[0]][0]}**. Please correct the error '
-                     f'and upload file again.')
+            st.error(text11a + f'**{df2_original.iloc[row_index[0]][0]}** ' + text11b)
             exit()
 
         # checking that all data is ok (first condition = only numbers, second condition = valid preferences)
