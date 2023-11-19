@@ -26,6 +26,9 @@ def step1():
         text_excel1 = 'Name/Number of Position'
         text_excel2a = 'Name/Number of '
         text_excel2b = 'priority candidate'
+        text_excel3 = 'Name/Number of Candidate'
+        text_excel4a = 'Name/Number of '
+        text_excel4b = 'priority position'
 
     elif lang == 'Hebrew':
         text1 = '### שלב 1 - הכנת קובץ אקסל להורדה'
@@ -35,8 +38,12 @@ def step1():
         text5 = '(לזכור להכניס נתונים בשתי הגליונות)'
         text6 = 'הורדת אקסל'
         text_excel1 = 'שם/מספר של משרה'
-        text_excel2a = 'שם/מספר מועמד מועדף '
+        text_excel2a = 'שם/מספר מועמד/ת מועדף/ת '
         text_excel2b = ''
+        text_excel3 = 'שם/מספר של מועמד/ת'
+        text_excel4a = 'שם/מספר משרה מועדפת '
+        text_excel4b = ''
+
     # ________________________________
 
     st.markdown('___')
@@ -102,10 +109,10 @@ def step1():
             # list of letters
             l_list = list(string.ascii_uppercase[1:string.ascii_uppercase.index(l_letter.upper()) + 1])
 
-            worksheet2.write('A1', 'Name/Number of Candidate', cell_format)
+            worksheet2.write('A1', text_excel3, cell_format)
             for y in l_list:
                 m = ord(y) - ord('A')
-                worksheet2.write(f'{y}1', f'Name/Number of {m} priority position', cell_format)
+                worksheet2.write(f'{y}1', f'{text_excel4a} {m} {text_excel4b}', cell_format)
 
             # Setting zoom level of worksheets
             worksheet1.set_zoom(150)
