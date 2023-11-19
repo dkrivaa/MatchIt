@@ -227,6 +227,8 @@ def step2():
             text16 = 'Not enough candidates to fill all positions!'
             text17 = 'Quitting due to inability to find solution for all positions'
             text18 = 'The optimal MATCH:'
+            text19 = 'Download results'
+            text20 = 'Summary'
 
 
         elif lang == 'Hebrew':
@@ -235,6 +237,8 @@ def step2():
             text16 = 'אין מספיק מועמדים למלא את כל המשרות'
             text17 = 'מפסיק עקב אי יכולת למצוא מענה לכל המשרות'
             text18 = 'ההתאמה האופטימלית'
+            text19 = 'הורדת התוצאות'
+            text20 = 'סיכום'
 
         # ________________________________
 
@@ -425,7 +429,7 @@ def step2():
 
             down_result = convert_df(df_results)
 
-            st.download_button('Download results',
+            st.download_button(text19,
                                data=down_result,
                                file_name='results.csv',
                                mime='text/csv',
@@ -434,7 +438,7 @@ def step2():
             # Summary data
             st.header('', divider='orange')
 
-            st.subheader('Summary')
+            st.subheader(text20)
             st.write(f'Number of **{upperhand}s** that got one of top wishes: **{pos_count}** '
                      f'(out of **{len(tentative_appoint)}** open positions)')
             st.write(f'Number of **{lowerhand}s** that got one of top wishes: **{emp_count}** '
