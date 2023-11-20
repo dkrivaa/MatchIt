@@ -21,7 +21,7 @@ def step1():
         text2 = 'Max preferences Manager:'
         text3 = 'Max preferences Candidate:'
         text4 = '#### Download Excel file to enter data'
-        text5 = '(Remember to fill out both sheets)'
+        text5 = '(Please fill out both sheets)'
         text6 = 'Download Excel'
         text_excel1 = 'Name/Number of Position'
         text_excel2a = 'Name/Number of '
